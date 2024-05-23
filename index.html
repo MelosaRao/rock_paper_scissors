@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function getRandomIntInclusive(min, max) {
+            const minCeiled = Math.ceil(min);
+            const maxFloored = Math.floor(max);
+            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+        }
+
+        function getComputerChoice(){
+            let arr = ["rock","paper","scissor"];
+            return arr[getRandomIntInclusive(0,2)];
+        }
+
+        function getHumanChoice(){
+            let HumanChoice = prompt("Enter rock, paper or scissor. The default choice is scissor");
+
+            if(HumanChoice.toLowerCase() === "rock"){
+                return "rock";
+            }
+
+            else if (HumanChoice.toLowerCase() === "paper") {
+                return "paper";
+                
+            } 
+            
+            else{
+                return "scissor";
+            }
+                
+            }
+
+        
+        function playGame(){ 
+        let humanScore = 0;
+        let computerScore = 0;
+        
+        function playRound(humanChoice, computerChoice){
+
+            if(humanChoice==="rock"){
+                if(computerChoice === "paper"){console.log("You lose : rock loses to paper");
+                    ++computerScore;
+                }
+
+                else if(computerChoice === "scissor"){console.log("You win : rock beats scissor");
+                    ++humanScore;
+                }
+
+                else if(computerChoice === "rock"){console.log("Tie!");}
+            }
+
+            if(humanChoice==="paper"){
+                if(computerChoice === "scissor"){console.log("You lose : paper loses to scissor");
+                    ++computerScore;
+                }
+
+                else if(computerChoice === "rock"){console.log("You win : rock beats paper");
+                    ++humanScore;
+                }
+
+                else if(computerChoice === "paper"){console.log("Tie!");}
+            }
+
+            if(humanChoice==="scissor"){
+                if(computerChoice === "rock"){console.log("You lose : scissor loses to rock");
+                    ++computerScore;
+                }
+
+                else if(computerChoice === "paper"){console.log("You win : scissor beats paper");
+                    ++humanScore;
+                }
+
+                else if(computerChoice === "scissor"){console.log("Tie!");}
+            }
+
+        }
+
+        for (let index = 0; index < 5; index++) {
+            const humanSelection = getHumanChoice();
+            const computerSelection = getComputerChoice();
+
+            playRound(humanSelection, computerSelection);
+        }
+
+        if(humanScore>computerScore){
+            console.log("You won!");
+        }
+        else if(humanScore<computerScore){
+            console.log("You lost");
+        }
+        else{
+            console.log("Its a tie!")
+        }
+
+    }
+
+
+
+
+    </script>
+    <title>Rock_Paper_Scissor</title>
+</head>
+<body>
+
+    <h1>Please open the console to see your progress. This game has 5 rounds!</h1>
+    <button onclick="playGame()">Click me to begin</button>
+    
+</body>
+</html>
